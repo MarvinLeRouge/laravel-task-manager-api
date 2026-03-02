@@ -13,10 +13,12 @@ return new class extends Migration
     {
         Schema::create('categories', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+            $table->string('name');
+            $table->string('color', 7)->default('#6366f1'); // couleur hex pour l'UI
             $table->timestamps();
         });
     }
-
     /**
      * Reverse the migrations.
      */
