@@ -40,13 +40,20 @@ function startEdit(task: any) {
     showForm.value = true
 }
 
+const errors = ref<Record<string, string[]>>({})
+
 async function handleSubmit() {
-    if (editingTask.value) {
-        await taskStore.updateTask(editingTask.value.id, form.value)
-    } else {
-        await taskStore.createTask(form.value)
+    errors.value = {}
+    try {
+        if (editingTask.value) {
+            await taskStore.updateTask(editingTask.value.id, form.value)
+        } else {
+            await taskStore.createTask(form.value)
+        }
+        showForm.value = false
+    } catch (e: any) {
+        errors.value = e
     }
-    showForm.value = false
 }
 
 function applyFilters() {
@@ -87,22 +94,26 @@ function applyFilters() {
                 <div class="col-span-2">
                     <label class="block text-sm text-gray-700">Titre</label>
                     <input v-model="form.title" type="text" class="mt-1 block w-full rounded border-gray-300 shadow-sm">
+                    <p v-if="errors.title" class="text-red-500 text-sm">{{ errors.title[0] }}</p>
                 </div>
                 <div class="col-span-2">
                     <label class="block text-sm text-gray-700">Description</label>
                     <textarea v-model="form.description" class="mt-1 block w-full rounded border-gray-300 shadow-sm"></textarea>
+                    <p v-if="errors.description" class="text-red-500 text-sm">{{ errors.description[0] }}</p>
                 </div>
                 <div>
                     <label class="block text-sm text-gray-700">Statut</label>
                     <select v-model="form.status" class="mt-1 block w-full rounded border-gray-300 shadow-sm">
                         <option v-for="(label, value) in statuses" :key="value" :value="value">{{ label }}</option>
                     </select>
+                    <p v-if="errors.status" class="text-red-500 text-sm">{{ errors.status[0] }}</p>
                 </div>
                 <div>
                     <label class="block text-sm text-gray-700">Priorité</label>
                     <select v-model="form.priority" class="mt-1 block w-full rounded border-gray-300 shadow-sm">
                         <option v-for="(label, value) in priorities" :key="value" :value="value">{{ label }}</option>
                     </select>
+                    <p v-if="errors.priority" class="text-red-500 text-sm">{{ errors.priority[0] }}</p>
                 </div>
                 <div>
                     <label class="block text-sm text-gray-700">Catégorie</label>
@@ -110,10 +121,12 @@ function applyFilters() {
                         <option value="">-- Aucune --</option>
                         <option v-for="cat in categoryStore.categories" :key="cat.id" :value="cat.id">{{ cat.name }}</option>
                     </select>
+                    <p v-if="errors.category_id" class="text-red-500 text-sm">{{ errors.category_id[0] }}</p>
                 </div>
                 <div>
                     <label class="block text-sm text-gray-700">Date d'échéance</label>
                     <input v-model="form.due_date" type="date" class="mt-1 block w-full rounded border-gray-300 shadow-sm">
+                    <p v-if="errors.due_date" class="text-red-500 text-sm">{{ errors.due_date[0] }}</p>
                 </div>
             </div>
             <div class="flex gap-2 mt-4">

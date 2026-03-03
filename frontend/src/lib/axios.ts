@@ -17,4 +17,15 @@ api.interceptors.request.use((config) => {
     return config
 })
 
+// Gestion des réponses
+api.interceptors.response.use(
+    (response) => response,
+    (error) => {
+        if (error.response?.status === 422) {
+            return Promise.reject(error.response.data.errors)
+        }
+        return Promise.reject(error)
+    }
+)
+
 export default api
