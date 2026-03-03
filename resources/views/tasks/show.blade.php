@@ -13,7 +13,7 @@
                             {{ $task->category->name }}
                         </span>
                     @endif
-                    <span class="ml-2 text-xs text-gray-500">{{ $task->status }} · {{ $task->priority }}</span>
+                    <span class="ml-2 text-xs text-gray-500">{{ App\Models\Task::$statuses[$task->status] }} · {{ App\Models\Task::$priorities[$task->priority] }}</span>
                 </div>
 
                 @if($task->description)

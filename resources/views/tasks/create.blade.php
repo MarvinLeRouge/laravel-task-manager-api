@@ -37,18 +37,18 @@
                     <div class="mb-4">
                         <label class="block text-sm font-medium text-gray-700">Statut</label>
                         <select name="status" class="mt-1 block w-full rounded border-gray-300 shadow-sm">
-                            <option value="todo" {{ old('status') == 'todo' ? 'selected' : '' }}>À faire</option>
-                            <option value="in_progress" {{ old('status') == 'in_progress' ? 'selected' : '' }}>En cours</option>
-                            <option value="done" {{ old('status') == 'done' ? 'selected' : '' }}>Terminé</option>
+                            @foreach(App\Models\Task::$statuses as $value => $label)
+                            <option value="{{ $value }}" {{ old('status') == $value ? 'selected' : '' }}>{{ $label }}</option>
+                            @endforeach
                         </select>
                     </div>
 
                     <div class="mb-4">
                         <label class="block text-sm font-medium text-gray-700">Priorité</label>
                         <select name="priority" class="mt-1 block w-full rounded border-gray-300 shadow-sm">
-                            <option value="low" {{ old('priority') == 'low' ? 'selected' : '' }}>Basse</option>
-                            <option value="medium" {{ old('priority', 'medium') == 'medium' ? 'selected' : '' }}>Moyenne</option>
-                            <option value="high" {{ old('priority') == 'high' ? 'selected' : '' }}>Haute</option>
+                            @foreach(App\Models\Task::$priorities as $value => $label)
+                            <option value="{{ $value }}" {{ old('priority') == $value ? 'selected' : '' }}>{{ $label }}</option>
+                            @endforeach
                         </select>
                     </div>
 

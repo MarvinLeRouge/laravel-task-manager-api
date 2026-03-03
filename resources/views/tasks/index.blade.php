@@ -15,16 +15,16 @@
 
                 <select name="status" class="rounded border-gray-300 shadow-sm text-sm">
                     <option value="">Tous les statuts</option>
-                    <option value="todo" {{ request('status') == 'todo' ? 'selected' : '' }}>À faire</option>
-                    <option value="in_progress" {{ request('status') == 'in_progress' ? 'selected' : '' }}>En cours</option>
-                    <option value="done" {{ request('status') == 'done' ? 'selected' : '' }}>Terminé</option>
+                    @foreach(App\Models\Task::$statuses as $value => $label)
+                    <option value="{{ $value }}" {{ request('status') == $value ? 'selected' : '' }}>{{ $label }}</option>
+                    @endforeach
                 </select>
 
                 <select name="priority" class="rounded border-gray-300 shadow-sm text-sm">
                     <option value="">Toutes les priorités</option>
-                    <option value="low" {{ request('priority') == 'low' ? 'selected' : '' }}>Basse</option>
-                    <option value="medium" {{ request('priority') == 'medium' ? 'selected' : '' }}>Moyenne</option>
-                    <option value="high" {{ request('priority') == 'high' ? 'selected' : '' }}>Haute</option>
+                    @foreach(App\Models\Task::$priorities as $value => $label)
+                    <option value="{{ $value }}" {{ request('status') == $value ? 'selected' : '' }}>{{ $label }}</option>
+                    @endforeach
                 </select>
 
                 <select name="category_id" class="rounded border-gray-300 shadow-sm text-sm">
@@ -50,7 +50,7 @@
                                     {{ $task->category->name }}
                                 </span>
                             @endif
-                            <span class="ml-2 text-xs text-gray-500">{{ $task->status }} · {{ $task->priority }}</span>
+                            <span class="ml-2 text-xs text-gray-500">{{ App\Models\Task::$statuses[$task->status] }} · {{ App\Models\Task::$priorities[$task->priority] }}</span>
                         </div>
                         <div class="flex gap-2">
                             <a href="{{ route('tasks.show', $task) }}" class="text-gray-500">Voir</a>

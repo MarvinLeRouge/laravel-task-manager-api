@@ -13,6 +13,18 @@ class Task extends Model
 
     protected $fillable = ['user_id', 'category_id', 'title', 'description', 'status', 'priority', 'due_date'];
 
+    public static array $statuses = [
+        'todo'        => 'À faire',
+        'in_progress' => 'En cours',
+        'done'        => 'Terminé',
+    ];
+
+    public static array $priorities = [
+        'low'    => 'Basse',
+        'medium' => 'Moyenne',
+        'high'   => 'Haute',
+    ];
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);

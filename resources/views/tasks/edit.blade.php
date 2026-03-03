@@ -39,18 +39,18 @@
                     <div class="mb-4">
                         <label class="block text-sm font-medium text-gray-700">Statut</label>
                         <select name="status" class="mt-1 block w-full rounded border-gray-300 shadow-sm">
-                            <option value="todo" {{ old('status', $task->status) == 'todo' ? 'selected' : '' }}>À faire</option>
-                            <option value="in_progress" {{ old('status', $task->status) == 'in_progress' ? 'selected' : '' }}>En cours</option>
-                            <option value="done" {{ old('status', $task->status) == 'done' ? 'selected' : '' }}>Terminé</option>
+                            @foreach(App\Models\Task::$statuses as $value => $label)
+                            <option value="{{ $value }}" {{ old('status', $task->status) == $value ? 'selected' : '' }}>{{ $label }}</option>
+                            @endforeach
                         </select>
                     </div>
 
                     <div class="mb-4">
                         <label class="block text-sm font-medium text-gray-700">Priorité</label>
                         <select name="priority" class="mt-1 block w-full rounded border-gray-300 shadow-sm">
-                            <option value="low" {{ old('priority', $task->priority) == 'low' ? 'selected' : '' }}>Basse</option>
-                            <option value="medium" {{ old('priority', $task->priority) == 'medium' ? 'selected' : '' }}>Moyenne</option>
-                            <option value="high" {{ old('priority', $task->priority) == 'high' ? 'selected' : '' }}>Haute</option>
+                            @foreach(App\Models\Task::$priorities as $value => $label)
+                            <option value="{{ $value }}" {{ old('priority', $task->priority) == $value ? 'selected' : '' }}>{{ $label }}</option>
+                            @endforeach
                         </select>
                     </div>
 
