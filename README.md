@@ -1,59 +1,259 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Laravel Task Manager
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Une application de gestion de tâches moderne construite avec **Laravel 12**, **Blade**, **Tailwind CSS** et **Alpine.js**.
 
-## About Laravel
+![Laravel](https://img.shields.io/badge/Laravel-12-FF2D20?style=flat&logo=laravel&logoColor=white)
+![PHP](https://img.shields.io/badge/PHP-8.2+-777BB4?style=flat&logo=php&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4.0-38B2AC?style=flat&logo=tailwind-css&logoColor=white)
+![License](https://img.shields.io/badge/License-MIT-green.svg)
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## 📋 Table des matières
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- [Fonctionnalités](#-fonctionnalités)
+- [Technologies utilisées](#-technologies-utilisées)
+- [Prérequis](#-prérequis)
+- [Installation](#-installation)
+- [Utilisation](#-utilisation)
+- [Structure du projet](#-structure-du-projet)
+- [Tests](#-tests)
+- [Captures d'écran](#-captures-décran)
+- [Contribuer](#-contribuer)
+- [Licence](#-licence)
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## ✨ Fonctionnalités
 
-## Learning Laravel
+### Gestion des tâches
+- ✅ **CRUD complet** - Créer, lire, modifier et supprimer des tâches
+- 📊 **Statuts** - À faire, En cours, Terminé
+- 🔥 **Priorités** - Basse, Moyenne, Haute
+- 📅 **Dates d'échéance** - Définir des deadlines pour chaque tâche
+- 🔍 **Recherche** - Rechercher dans les titres et descriptions
+- 🏷️ **Filtres** - Filtrer par statut, priorité et catégorie
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+### Gestion des catégories
+- 📁 Création de catégories personnalisées
+- 🎨 Codes couleur hexadécimaux pour une identification visuelle
+- 📂 Association des tâches aux catégories
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### Authentification & Sécurité
+- 🔐 Système d'authentification complet (Laravel Breeze)
+- 👤 Inscription et connexion sécurisées
+- ✉️ Vérification d'email
+- 🔑 Réinitialisation de mot de passe
+- 🛡️ Politiques d'autorisation (Policies) pour la protection des tâches
+- 👤 Gestion du profil utilisateur
 
-## Laravel Sponsors
+### Multi-utilisateurs
+- 🔒 Chaque utilisateur possède ses propres tâches et catégories
+- 🚫 Isolation des données par utilisateur
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+## 🛠 Technologies utilisées
 
-### Premium Partners
+| Backend | Frontend | Outils |
+|---------|----------|--------|
+| Laravel 12 | Blade Templates | Vite 7 |
+| PHP 8.2+ | Tailwind CSS 4 | Alpine.js 3 |
+| Eloquent ORM | Components réutilisables | Laravel Pail |
+| Migrations | Responsive Design | Laravel Pint |
+| Form Requests | | PHPUnit |
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+## 📦 Prérequis
 
-## Contributing
+Avant de commencer, assurez-vous d'avoir installé :
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+- **PHP** >= 8.2
+- **Composer** (gestionnaire de dépendances PHP)
+- **Node.js** >= 18.x et **npm**
+- **SQLite** (ou un autre SGBD : MySQL, PostgreSQL)
+- **Git**
 
-## Code of Conduct
+## 🚀 Installation
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### 1. Cloner le repository
 
-## Security Vulnerabilities
+```bash
+git clone https://github.com/MarvinLeRouge/laravel-task-manager.git
+cd laravel-task-manager
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+### 2. Installer les dépendances
 
-## License
+```bash
+# Installer les dépendances PHP
+composer install
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+# Installer les dépendances Node.js
+npm install
+```
+
+### 3. Configurer l'environnement
+
+```bash
+# Copier le fichier .env.example vers .env
+cp .env.example .env
+
+# Générer la clé d'application
+php artisan key:generate
+```
+
+### 4. Configurer la base de données
+
+Par défaut, le projet utilise **SQLite**. Créez le fichier de base de données :
+
+```bash
+touch database/database.sqlite
+```
+
+Puis lancez les migrations :
+
+```bash
+php artisan migrate
+```
+
+### 5. Compiler les assets
+
+```bash
+# Pour le développement (avec hot-reload)
+npm run dev
+
+# Ou pour la production
+npm run build
+```
+
+### 6. Lancer le serveur de développement
+
+```bash
+# Option 1 : Utiliser le script composer (recommandé)
+composer dev
+
+# Option 2 : Serveur Laravel classique
+php artisan serve
+```
+
+L'application sera accessible à l'adresse : http://localhost:8000
+
+## 💡 Utilisation
+
+### Commandes disponibles
+
+| Commande | Description |
+|----------|-------------|
+| `composer dev` | Lance le serveur avec hot-reload (server, queue, logs, vite) |
+| `composer test` | Exécute la suite de tests |
+| `npm run dev` | Lance Vite en mode développement |
+| `npm run build` | Compile les assets pour la production |
+| `php artisan migrate` | Exécute les migrations |
+| `php artisan migrate:fresh --seed` | Réinitialise la BDD avec les seeders |
+
+### Script d'installation rapide
+
+```bash
+composer setup
+```
+
+Ce script exécute automatiquement :
+- `composer install`
+- Copie `.env.example` vers `.env`
+- Génère la clé d'application
+- Exécute les migrations
+- `npm install`
+- `npm run build`
+
+## 📁 Structure du projet
+
+```
+laravel-task-manager/
+├── app/
+│   ├── Http/
+│   │   ├── Controllers/
+│   │   │   ├── CategoryController.php    # CRUD des catégories
+│   │   │   ├── TaskController.php        # CRUD des tâches
+│   │   │   ├── TaskFilterController.php  # Filtrage des tâches
+│   │   │   └── ProfileController.php     # Gestion du profil
+│   │   └── Requests/
+│   │       ├── StoreTaskRequest.php      # Validation création tâche
+│   │       ├── UpdateTaskRequest.php     # Validation modification tâche
+│   │       └── ...
+│   ├── Models/
+│   │   ├── Task.php                      # Modèle Task
+│   │   ├── Category.php                  # Modèle Category
+│   │   └── User.php                      # Modèle User
+│   └── Policies/
+│       └── TaskPolicy.php                # Autorisations Task
+├── database/
+│   ├── migrations/                       # Migrations de la BDD
+│   ├── factories/                        # Factories pour les tests
+│   └── seeders/                          # Seeders
+├── resources/
+│   ├── views/
+│   │   ├── tasks/                        # Vues des tâches
+│   │   ├── categories/                   # Vues des catégories
+│   │   ├── layouts/                      # Layouts Blade
+│   │   └── components/                   # Components Blade
+│   ├── js/
+│   └── css/
+├── routes/
+│   ├── web.php                           # Routes web
+│   └── auth.php                          # Routes d'authentification
+└── tests/
+    ├── Feature/                          # Tests fonctionnels
+    └── Unit/                             # Tests unitaires
+```
+
+## 🧪 Tests
+
+Le projet inclut une suite de tests pour garantir la qualité du code.
+
+```bash
+# Exécuter tous les tests
+composer test
+
+# Ou directement avec PHPUnit
+php artisan test
+```
+
+## 📸 Captures d'écran
+
+> Ajoutez ici des captures d'écran de votre application :
+> - Page d'accueil / Dashboard
+> - Liste des tâches avec filtres
+> - Formulaire de création/modification
+> - Gestion des catégories
+
+## 🤝 Contribuer
+
+Les contributions sont les bienvenues ! Voici comment vous pouvez contribuer :
+
+1. Forkez le projet
+2. Créez une branche (`git checkout -b feature/AmazingFeature`)
+3. Commitez vos changements (`git commit -m 'Add some AmazingFeature'`)
+4. Pushez vers la branche (`git push origin feature/AmazingFeature`)
+5. Ouvrez une Pull Request
+
+## 📄 Licence
+
+Ce projet est distribué sous la licence [MIT](LICENSE).
+
+---
+
+## 🎓 À propos
+
+Ce projet a été développé dans le cadre d'un apprentissage de **Laravel** et des bonnes pratiques du développement web moderne. Il démontre la maîtrise des concepts suivants :
+
+- Architecture MVC avec Laravel
+- Authentification et autorisation
+- Validation des formulaires (Form Requests)
+- Relations Eloquent (One-to-Many, Polymorphic)
+- Tests automatisés avec PHPUnit
+- Intégration frontend avec Tailwind CSS et Alpine.js
+- Build d'assets avec Vite
+
+---
+
+<div align="center">
+
+**Développé avec ❤️ par Jean Ceugniet**
+
+[⬆ Retour en haut](#laravel-task-manager)
+
+</div>
