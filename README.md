@@ -23,6 +23,7 @@ A modern RESTful API for task management built with **Laravel 12** and **Sanctum
 - [Running Tests](#-running-tests)
 - [Project Structure](#-project-structure)
 - [Contributing](#-contributing)
+- [Cleanup Notes - Legacy Blade Components](#-cleanup-notes---legacy-blade-components)
 - [License](#-license)
 
 ## 📖 Overview
@@ -557,6 +558,131 @@ php artisan migrate
 # Run tests to verify setup
 composer test
 ```
+
+## 🧹 Cleanup Notes - Legacy Blade Components
+
+> ⚠️ **Important:** This repository was originally cloned from a Laravel Blade view-based version. After conversion to an API-only architecture, several legacy files remain that are no longer used by the API.
+
+### Context
+
+This project has been refactored from a traditional Laravel MVC application (using Blade templates) to a pure REST API. The API now handles all functionality through:
+- `app/Http/Controllers/Api/*` controllers
+- JSON Resources for response transformation
+- Sanctum token authentication
+
+### Legacy Files to Remove
+
+In a production context (non-exercise), the following files and directories should be **safely deleted** as they are only used by the Blade frontend and are not referenced by the API:
+
+#### Controllers (Blade-specific)
+```
+app/Http/Controllers/CategoryController.php
+app/Http/Controllers/TaskController.php
+app/Http/Controllers/TaskFilterController.php
+app/Http/Controllers/ProfileController.php
+app/Http/Controllers/Auth/              # Entire directory (9 files)
+```
+
+#### Routes (Web/Blade)
+```
+routes/web.php
+routes/auth.php
+```
+
+#### Views (Blade templates)
+```
+resources/views/  # Entire directory
+```
+
+#### Form Requests (Blade validation)
+```
+app/Http/Requests/StoreCategoryRequest.php
+app/Http/Requests/UpdateCategoryRequest.php
+app/Http/Requests/StoreTaskRequest.php
+app/Http/Requests/UpdateTaskRequest.php
+app/Http/Requests/ProfileUpdateRequest.php
+```
+
+#### Policies (Unused)
+```
+app/Policies/TaskPolicy.php  # All methods return false, not used by API
+```
+
+#### Frontend Assets (if no separate frontend)
+```
+resources/css/app.css
+resources/js/app.js
+resources/js/bootstrap.js
+frontend/  # Only if not using a separate Vue/React frontend
+```
+
+#### Configuration Cleanup
+
+After removing the above files, update `bootstrap/app.php` to remove web route references:
+
+```php
+// Before
+return Application::configure(basePath: dirname(__DIR__))
+    ->withRouting(
+        web: __DIR__.'/../routes/web.php',
+        api: __DIR__.'/../routes/api.php',
+        commands: __DIR__.'/../routes/console.php',
+        health: '/up',
+    )
+
+// After
+return Application::configure(basePath: dirname(__DIR__))
+    ->withRouting(
+        api: __DIR__.'/../routes/api.php',
+        commands: __DIR__.'/../routes/console.php',
+        health: '/up',
+    )
+```
+
+### Files to KEEP (API-specific)
+
+| File/Directory | Purpose |
+|----------------|---------|
+| `app/Http/Controllers/Api/` | API controllers |
+| `app/Http/Resources/` | JSON Resource classes |
+| `routes/api.php` | API route definitions |
+| `config/sanctum.php` | Sanctum configuration |
+| `tests/Feature/Api/` | API feature tests |
+| `database/migrations/*_tokens_table.php` | Sanctum tokens table |
+
+### Recommended Cleanup Commands
+
+```bash
+# Remove Blade controllers
+rm -rf app/Http/Controllers/Auth
+rm app/Http/Controllers/CategoryController.php
+rm app/Http/Controllers/TaskController.php
+rm app/Http/Controllers/TaskFilterController.php
+rm app/Http/Controllers/ProfileController.php
+
+# Remove Blade routes
+rm routes/web.php
+rm routes/auth.php
+
+# Remove Blade views
+rm -rf resources/views
+
+# Remove Form Requests
+rm app/Http/Requests/StoreCategoryRequest.php
+rm app/Http/Requests/UpdateCategoryRequest.php
+rm app/Http/Requests/StoreTaskRequest.php
+rm app/Http/Requests/UpdateTaskRequest.php
+rm app/Http/Requests/ProfileUpdateRequest.php
+
+# Remove Policies
+rm -rf app/Policies
+
+# Remove frontend assets (if not using separate frontend)
+rm -rf resources/css resources/js frontend
+rm tailwind.config.js postcss.config.js vite.config.js package.json package-lock.json
+```
+
+---
 
 ## 📄 License
 
