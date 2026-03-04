@@ -1,59 +1,579 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Laravel Task Manager API
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+A modern RESTful API for task management built with **Laravel 12** and **Sanctum**.
 
-## About Laravel
+![Laravel](https://img.shields.io/badge/Laravel-12-FF2D20?style=flat&logo=laravel&logoColor=white)
+![PHP](https://img.shields.io/badge/PHP-8.2+-777BB4?style=flat&logo=php&logoColor=white)
+![Sanctum](https://img.shields.io/badge/Sanctum-4.0-201c44?style=flat&logo=laravel&logoColor=white)
+![License](https://img.shields.io/badge/License-MIT-green.svg)
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## 📋 Table of Contents
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- [Overview](#-overview)
+- [Features](#-features)
+- [Tech Stack](#-tech-stack)
+- [Requirements](#-requirements)
+- [Installation](#-installation)
+- [Configuration](#-configuration)
+- [API Authentication](#-api-authentication)
+- [API Endpoints](#-api-endpoints)
+- [Request/Response Examples](#-requestresponse-examples)
+- [Filtering & Search](#-filtering--search)
+- [Error Handling](#-error-handling)
+- [Running Tests](#-running-tests)
+- [Project Structure](#-project-structure)
+- [Contributing](#-contributing)
+- [License](#-license)
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## 📖 Overview
 
-## Learning Laravel
+This project provides a complete REST API for managing tasks and categories. It features token-based authentication using Laravel Sanctum, resourceful controllers, API Resources for consistent JSON responses, and comprehensive feature tests.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+## ✨ Features
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### Authentication
+- 🔐 **Token-based auth** using Laravel Sanctum
+- 🔑 Secure login/logout endpoints
+- 🛡️ Protected routes with `auth:sanctum` middleware
 
-## Laravel Sponsors
+### Tasks Management
+- ✅ Full CRUD operations for tasks
+- 📊 Status tracking: `todo`, `in_progress`, `done`
+- 🔥 Priority levels: `low`, `medium`, `high`
+- 📅 Due date support
+- 🔍 Search by title and description
+- 🏷️ Filter by status, priority, and category
+- 📎 Category association
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+### Categories Management
+- 📁 Create and manage custom categories
+- 🎨 Hex color codes for visual identification
+- 📊 Task count per category
 
-### Premium Partners
+### Multi-User Support
+- 🔒 User isolation - each user has their own tasks and categories
+- 🚫 Automatic scoping via authentication
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+## 🛠 Tech Stack
 
-## Contributing
+| Component | Technology |
+|-----------|------------|
+| **Framework** | Laravel 12 |
+| **PHP Version** | 8.2+ |
+| **Authentication** | Laravel Sanctum 4 |
+| **Database** | SQLite (default), MySQL, PostgreSQL |
+| **Testing** | PHPUnit |
+| **API Format** | JSON |
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## 📦 Requirements
 
-## Code of Conduct
+Ensure you have the following installed:
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+- **PHP** >= 8.2
+- **Composer** (PHP dependency manager)
+- **SQLite** / MySQL / PostgreSQL
+- **Git**
 
-## Security Vulnerabilities
+## 🚀 Installation
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+### 1. Clone the Repository
 
-## License
+```bash
+git clone https://github.com/MarvinLeRouge/laravel-task-manager-api.git
+cd laravel-task-manager-api
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+### 2. Install Dependencies
+
+```bash
+composer install
+```
+
+### 3. Environment Setup
+
+```bash
+# Copy environment file
+cp .env.example .env
+
+# Generate application key
+php artisan key:generate
+```
+
+### 4. Database Configuration
+
+For SQLite (recommended for development):
+
+```bash
+touch database/database.sqlite
+php artisan migrate
+```
+
+For MySQL/PostgreSQL, update `.env` with your credentials:
+
+```env
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=laravel
+DB_USERNAME=root
+DB_PASSWORD=
+```
+
+Then run migrations:
+
+```bash
+php artisan migrate
+```
+
+### 5. Start the Server
+
+```bash
+php artisan serve
+```
+
+The API will be available at: `http://localhost:8000`
+
+## ⚙️ Configuration
+
+### Environment Variables
+
+Key variables in `.env`:
+
+| Variable | Description | Default |
+|----------|-------------|---------|
+| `APP_URL` | Base URL for the API | `http://localhost` |
+| `DB_CONNECTION` | Database driver | `sqlite` |
+| `SANCTUM_STATEFUL_DOMAINS` | Domains for stateful auth | `localhost,127.0.0.1` |
+
+## 🔐 API Authentication
+
+All endpoints except `/api/login` require authentication via Bearer token.
+
+### Obtaining a Token
+
+Send a POST request to `/api/login` with credentials:
+
+```bash
+curl -X POST http://localhost:8000/api/login \
+  -H "Content-Type: application/json" \
+  -H "Accept: application/json" \
+  -d '{"email":"user@example.com","password":"password"}'
+```
+
+**Response:**
+```json
+{
+  "token": "3|AbCdEfGhIjKlMnOpQrStUvWxYz1234567890",
+  "user": {
+    "id": 1,
+    "name": "John Doe",
+    "email": "user@example.com",
+    "email_verified_at": null,
+    "created_at": "2026-03-04T10:00:00.000000Z",
+    "updated_at": "2026-03-04T10:00:00.000000Z"
+  }
+}
+```
+
+### Using the Token
+
+Include the token in the `Authorization` header for all protected requests:
+
+```bash
+curl -X GET http://localhost:8000/api/tasks \
+  -H "Authorization: Bearer 3|AbCdEfGhIjKlMnOpQrStUvWxYz1234567890" \
+  -H "Accept: application/json"
+```
+
+### Revoking a Token
+
+```bash
+curl -X POST http://localhost:8000/api/logout \
+  -H "Authorization: Bearer 3|AbCdEfGhIjKlMnOpQrStUvWxYz1234567890" \
+  -H "Accept: application/json"
+```
+
+## 📡 API Endpoints
+
+### Authentication
+
+| Method | Endpoint | Description | Auth Required |
+|--------|----------|-------------|---------------|
+| `POST` | `/api/login` | Authenticate and get token | ❌ |
+| `POST` | `/api/logout` | Revoke current token | ✅ |
+
+### Categories
+
+| Method | Endpoint | Description | Auth Required |
+|--------|----------|-------------|---------------|
+| `GET` | `/api/categories` | List all categories | ✅ |
+| `POST` | `/api/categories` | Create a category | ✅ |
+| `GET` | `/api/categories/{id}` | Get category details | ✅ |
+| `PUT` | `/api/categories/{id}` | Update a category | ✅ |
+| `DELETE` | `/api/categories/{id}` | Delete a category | ✅ |
+
+### Tasks
+
+| Method | Endpoint | Description | Auth Required |
+|--------|----------|-------------|---------------|
+| `GET` | `/api/tasks` | List all tasks | ✅ |
+| `POST` | `/api/tasks` | Create a task | ✅ |
+| `GET` | `/api/tasks/{id}` | Get task details | ✅ |
+| `PUT` | `/api/tasks/{id}` | Update a task | ✅ |
+| `DELETE` | `/api/tasks/{id}` | Delete a task | ✅ |
+
+## 📝 Request/Response Examples
+
+### Categories
+
+#### Create Category
+
+```bash
+curl -X POST http://localhost:8000/api/categories \
+  -H "Authorization: Bearer YOUR_TOKEN" \
+  -H "Content-Type: application/json" \
+  -H "Accept: application/json" \
+  -d '{
+    "name": "Work",
+    "color": "#6366f1"
+  }'
+```
+
+**Response (201 Created):**
+```json
+{
+  "data": {
+    "id": 1,
+    "name": "Work",
+    "color": "#6366f1",
+    "tasks_count": 0
+  }
+}
+```
+
+#### List Categories
+
+```bash
+curl -X GET http://localhost:8000/api/categories \
+  -H "Authorization: Bearer YOUR_TOKEN" \
+  -H "Accept: application/json"
+```
+
+**Response (200 OK):**
+```json
+{
+  "data": [
+    {
+      "id": 1,
+      "name": "Work",
+      "color": "#6366f1",
+      "tasks_count": 3
+    },
+    {
+      "id": 2,
+      "name": "Personal",
+      "color": "#10b981",
+      "tasks_count": 1
+    }
+  ]
+}
+```
+
+#### Update Category
+
+```bash
+curl -X PUT http://localhost:8000/api/categories/1 \
+  -H "Authorization: Bearer YOUR_TOKEN" \
+  -H "Content-Type: application/json" \
+  -H "Accept: application/json" \
+  -d '{
+    "name": "Work Projects",
+    "color": "#3b82f6"
+  }'
+```
+
+#### Delete Category
+
+```bash
+curl -X DELETE http://localhost:8000/api/categories/1 \
+  -H "Authorization: Bearer YOUR_TOKEN" \
+  -H "Accept: application/json"
+```
+
+**Response (204 No Content)**
+
+---
+
+### Tasks
+
+#### Create Task
+
+```bash
+curl -X POST http://localhost:8000/api/tasks \
+  -H "Authorization: Bearer YOUR_TOKEN" \
+  -H "Content-Type: application/json" \
+  -H "Accept: application/json" \
+  -d '{
+    "title": "Learn Laravel Sanctum",
+    "description": "Study token-based authentication",
+    "category_id": 1,
+    "status": "todo",
+    "priority": "high",
+    "due_date": "2026-03-15"
+  }'
+```
+
+**Response (201 Created):**
+```json
+{
+  "data": {
+    "id": 1,
+    "title": "Learn Laravel Sanctum",
+    "description": "Study token-based authentication",
+    "status": "todo",
+    "priority": "high",
+    "due_date": "2026-03-15",
+    "category": {
+      "id": 1,
+      "name": "Work",
+      "color": "#6366f1",
+      "tasks_count": 1
+    },
+    "created_at": "2026-03-04T10:30:00.000000Z"
+  }
+}
+```
+
+#### List Tasks
+
+```bash
+curl -X GET http://localhost:8000/api/tasks \
+  -H "Authorization: Bearer YOUR_TOKEN" \
+  -H "Accept: application/json"
+```
+
+**Response (200 OK):**
+```json
+{
+  "data": [
+    {
+      "id": 1,
+      "title": "Learn Laravel Sanctum",
+      "description": "Study token-based authentication",
+      "status": "todo",
+      "priority": "high",
+      "due_date": "2026-03-15",
+      "category": {
+        "id": 1,
+        "name": "Work",
+        "color": "#6366f1"
+      },
+      "created_at": "2026-03-04T10:30:00.000000Z"
+    }
+  ]
+}
+```
+
+#### Update Task
+
+```bash
+curl -X PUT http://localhost:8000/api/tasks/1 \
+  -H "Authorization: Bearer YOUR_TOKEN" \
+  -H "Content-Type: application/json" \
+  -H "Accept: application/json" \
+  -d '{
+    "title": "Master Laravel Sanctum",
+    "description": "Complete authentication implementation",
+    "status": "in_progress",
+    "priority": "high",
+    "due_date": "2026-03-15"
+  }'
+```
+
+#### Delete Task
+
+```bash
+curl -X DELETE http://localhost:8000/api/tasks/1 \
+  -H "Authorization: Bearer YOUR_TOKEN" \
+  -H "Accept: application/json"
+```
+
+**Response (204 No Content)**
+
+## 🔍 Filtering & Search
+
+The `/api/tasks` endpoint supports query parameters for filtering:
+
+| Parameter | Description | Example |
+|-----------|-------------|---------|
+| `status` | Filter by task status | `?status=done` |
+| `priority` | Filter by priority level | `?priority=high` |
+| `category_id` | Filter by category | `?category_id=1` |
+| `search` | Search in title/description | `?search=Laravel` |
+
+### Examples
+
+**Get all completed tasks:**
+```bash
+curl -X GET "http://localhost:8000/api/tasks?status=done" \
+  -H "Authorization: Bearer YOUR_TOKEN" \
+  -H "Accept: application/json"
+```
+
+**Get high priority tasks in a category:**
+```bash
+curl -X GET "http://localhost:8000/api/tasks?priority=high&category_id=1" \
+  -H "Authorization: Bearer YOUR_TOKEN" \
+  -H "Accept: application/json"
+```
+
+**Search tasks:**
+```bash
+curl -X GET "http://localhost:8000/api/tasks?search=Laravel" \
+  -H "Authorization: Bearer YOUR_TOKEN" \
+  -H "Accept: application/json"
+```
+
+## ❌ Error Handling
+
+### Authentication Errors
+
+**401 Unauthorized** - Missing or invalid token:
+```json
+{
+  "message": "Unauthenticated."
+}
+```
+
+### Validation Errors
+
+**422 Unprocessable Entity** - Invalid request data:
+```json
+{
+  "message": "The given data was invalid.",
+  "errors": {
+    "email": ["The email field is required."],
+    "password": ["The password field is required."]
+  }
+}
+```
+
+### Not Found
+
+**404 Not Found** - Resource doesn't exist:
+```json
+{
+  "message": "Not Found."
+}
+```
+
+## 🧪 Running Tests
+
+The project includes comprehensive feature tests for all API endpoints.
+
+```bash
+# Run all tests
+composer test
+
+# Or using artisan
+php artisan test
+
+# Run specific test file
+php artisan test tests/Feature/Api/TaskTest.php
+
+# Run with coverage
+php artisan test --coverage
+```
+
+### Test Coverage
+
+| Test Class | Coverage |
+|------------|----------|
+| `AuthTest` | Login, logout functionality |
+| `CategoryTest` | CRUD operations for categories |
+| `TaskTest` | CRUD operations for tasks |
+
+## 📁 Project Structure
+
+```
+laravel-task-manager-api/
+├── app/
+│   ├── Http/
+│   │   ├── Controllers/
+│   │   │   └── Api/
+│   │   │       ├── AuthController.php      # Token authentication
+│   │   │       ├── CategoryController.php  # Category CRUD
+│   │   │       └── TaskController.php      # Task CRUD + filtering
+│   │   └── Resources/
+│   │       ├── CategoryResource.php        # Category JSON transformation
+│   │       └── TaskResource.php            # Task JSON transformation
+│   └── Models/
+│       ├── User.php                        # User model with Sanctum
+│       ├── Category.php                    # Category model
+│       └── Task.php                        # Task model
+├── database/
+│   ├── migrations/
+│   │   ├── 0001_01_01_000000_create_users_table.php
+│   │   ├── 2026_03_02_073212_create_categories_table.php
+│   │   ├── 2026_03_02_073225_create_tasks_table.php
+│   │   └── 2026_03_03_084422_create_personal_access_tokens_table.php
+│   └── factories/                          # Model factories for testing
+├── routes/
+│   └── api.php                             # API route definitions
+├── tests/
+│   └── Feature/
+│       └── Api/
+│           ├── AuthTest.php
+│           ├── CategoryTest.php
+│           └── TaskTest.php
+├── config/
+│   └── sanctum.php                         # Sanctum configuration
+└── composer.json
+```
+
+## 🤝 Contributing
+
+Contributions are welcome! Here's how you can help:
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+### Development Setup
+
+```bash
+# Install dependencies
+composer install
+
+# Setup environment
+cp .env.example .env
+php artisan key:generate
+
+# Run migrations
+php artisan migrate
+
+# Run tests to verify setup
+composer test
+```
+
+## 📄 License
+
+This project is open-sourced software licensed under the [MIT License](LICENSE).
+
+---
+
+## 📞 Support
+
+For issues and feature requests, please create an issue on the [GitHub repository](https://github.com/MarvinLeRouge/laravel-task-manager-api/issues).
+
+---
+
+<div align="center">
+
+**Built with ❤️ using Laravel 12**
+
+[⬆ Back to Top](#laravel-task-manager-api)
+
+</div>
